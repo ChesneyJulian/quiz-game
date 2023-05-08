@@ -1,7 +1,24 @@
 section {
     height: 100vh;
-    width: 100vw;
+    /* width: 100vw; */
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+h2 {
+    padding: 20px;
+    margin: 5px;
+    font-size: 30px;
+    color: rgb(237, 189, 68);
+}
+
+p {
+    padding: 10px;
+}
+
+#start-btn {
+    margin: 20px;
+    background-color: rgba(218, 165, 32, 0.575);
 }
