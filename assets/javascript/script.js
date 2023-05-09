@@ -76,8 +76,9 @@ function currentQuestion([i]) {
    
   function handleAnswers() {  
      i += 1 ;
-            
-    console.log(i);
+    
+    console.log([i]);
     currentQuestion([i]);
+    
   }
  
