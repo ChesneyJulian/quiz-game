@@ -16,6 +16,7 @@ answerBtn.addEventListener('click', function() {
     startEl.style.display ="none";
     quizEl.style.display ="none";
     endEl.style.display = null;
+    currentQuestion();
 
 });
 submitBtn.addEventListener('click', function() {
@@ -57,17 +58,28 @@ var questionsArr = [
 
  var listEl = document.createElement("ol"); 
  var questionEl = document.createElement("h2");
- var liEl = document.createElement("Li");
- quizEl.appendChild(questionEl);
- quizEl.appendChild(listEl);
- listEl.appendChild(liEl);
+ var liEl1 = document.createElement("Li");
+ var liEl2 = document.createElement("Li");
+ var liEl3 = document.createElement("Li");
+ var liEl4 = document.createElement("Li");
+
+ 
  questionEl.style.display = null;
  listEl.style.display = null;
- questionEl.textContent = questionsArr[0].question;
- for (choices in questionsArr) {
-    for (var i=0;i<choices.length;i++){ 
-    value = choices[i];
-    liEl.textContent = (value.toString(value)) * choices.length; }
- }
- 
 
+function  currentQuestion() {
+    questionEl.textContent = questionsArr[0].question;
+    liEl1.textContent = questionsArr[0].choices[0];
+    liEl2.textContent =questionsArr[0].choices[1];
+    liEl3.textContent = questionsArr[0].choices[2];
+    liEl4.textContent = questionsArr[0].choices[3];
+
+
+    quizEl.appendChild(questionEl);
+    questionEl.appendChild(listEl);
+    listEl.appendChild(liEl1);
+    listEl.appendChild(liEl2);
+    listEl.appendChild(liEl3);
+    listEl.appendChild(liEl4);
+}
+ 
