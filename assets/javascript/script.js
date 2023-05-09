@@ -7,7 +7,7 @@ var endEl = document.querySelector('#end');
 var i = 0;
 var questionsArr = [ 
         {question: "Who was tricked into opening the Chamber of Secrets?",
-        choices:["hermione", "Ginny", "Neville", "Draco"] },
+        choices:["Hermione", "Ginny", "Neville", "Draco"] },
 
         {question: "How was Hermione able to take multiple classes at once?", 
         choices: ["She ran", "Using a looking glass", "Using a Time-Turner", "Using dark magic"]},
@@ -16,18 +16,24 @@ var questionsArr = [
         choices:["Godric's hollow", "Privet Drive", "The Leaky Cauldron", "Hogwarts"]}, 
 
         {question: "What is Seversus's patronus charm?", 
-        choices:["Beaver", "Stag", "Bear", "Cat"]},
+        choices:["Beaver", "Doe", "Bear", "Stag"]},
 
         {question: "What is the name of Hagrids pet hound?", 
         choices:["Bruce", "Grawp", "Arragog", "Fang"]}, 
 
         {question: "What horcrux does Harry find within the Room of Requirement?", 
-        choices:["Helena's Lost Diadem", "Tom Riddle's Diary", "The sword of Gryffindor", "The Mirror of Erised"]}
+        choices:["Helena's Lost Diadem", "Tom Riddle's Diary", "The sword of Gryffindor", "The Mirror of Erised"]},
+
+        {question: "What is Ron's eldest brother's name?",
+        choices: ["Percy", "Charlie", "George", "Bill"]},
+
+        {question: "What is Sirius's nickname within his friend group, the Marauders?",
+        choices: ["Prongs", "Wormtail", "Padfoot", "Mooney"]}
     ]
 
 
 startBtn.addEventListener('click', function() { 
-    currentQuestion([i]);
+    currentQuestion([0]);
     startEl.style.display = "none";
     quizEl.style.display = null;
     endEl.style.display = "none";
@@ -54,17 +60,24 @@ function currentQuestion([i]) {
     answerBtn3.textContent = questionsArr[i].choices[2];
     answerBtn4.textContent = questionsArr[i].choices[3];
 
-    handleAnswers();
-
+   
+    answerBtn.forEach((button) => {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+           
+             handleAnswers([i]);
+            
+        
+        });
+    })
     
 }
    
-  function handleAnswers() { answerBtn.forEach((button) => {
-    button.addEventListener('click', function() {
-        var increase = (i+=1);
-        
-        currentQuestion([increase]);
-        });
-})
+  function handleAnswers() {  
+     i += 1 ;
+            
+    console.log(i);
+    currentQuestion([i]);
   }
  
