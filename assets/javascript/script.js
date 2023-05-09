@@ -4,6 +4,7 @@ var submitBtn = document.querySelector('#submit');
 var startEl = document.querySelector('#start');
 var quizEl = document.querySelector('#quiz');
 var endEl = document.querySelector('#end');
+var i = 0;
 var questionsArr = [ 
         {question: "Who was tricked into opening the Chamber of Secrets?",
         choices:["hermione", "Ginny", "Neville", "Draco"] },
@@ -26,7 +27,7 @@ var questionsArr = [
 
 
 startBtn.addEventListener('click', function() { 
-    currentQuestion([0]);
+    currentQuestion([i]);
     startEl.style.display = "none";
     quizEl.style.display = null;
     endEl.style.display = "none";
@@ -54,8 +55,11 @@ function currentQuestion([i]) {
     answerBtn4.textContent = questionsArr[i].choices[3];
 
     handleAnswers();
+
     
-    function handleAnswers() { answerBtn.forEach((button) => {
+}
+   
+  function handleAnswers() { answerBtn.forEach((button) => {
     button.addEventListener('click', function() {
         var increase = (i+=1);
         
@@ -63,7 +67,4 @@ function currentQuestion([i]) {
         });
 })
   }
-}
-   
-  
  
