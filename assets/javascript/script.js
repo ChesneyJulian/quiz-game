@@ -59,8 +59,8 @@ function currentQuestion([i]) {
     answerBtn2.textContent = questionsArr[i].choices[1];
     answerBtn3.textContent = questionsArr[i].choices[2];
     answerBtn4.textContent = questionsArr[i].choices[3];
+}
 
-   
     answerBtn.forEach((button) => {
         button.addEventListener('click', function(event) {
             event.stopPropagation();
@@ -72,12 +72,10 @@ function currentQuestion([i]) {
         });
     })
     
-}
-   
   function handleAnswers() {  
      i += 1 ;
     
-    console.log([i]);
+    console.log(questionsArr[i].question);
     currentQuestion([i]);
     
   }
