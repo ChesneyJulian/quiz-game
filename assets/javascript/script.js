@@ -60,16 +60,16 @@ var answersKey = ["Ginny", "Using a Time-Turner","Godric's hollow", "Doe", "Fang
 answerBtn.forEach((button) => {
      button.addEventListener('click', function(event) {
         console.log(event.currentTarget.value);
+        var userChoice = event.currentTarget.value; 
         event.stopPropagation();
         event.preventDefault();
-        for (var x = 0; x < answersKey.length; x++) {
-            if (event.currentTarget.value == answersKey[x]) {
-               answerResult.textContent = "That's Correct!";
-               
-            } else {
-                answerResult.textContent = "Wrong Answer!"
-            }
-              
+        
+        if (userChoice == answersKey[i]) {
+            console.log("correct");
+            answerResult.textContent = "Thats Correct!";
+        } else {
+            console.log("incorrect");
+            answerResult.textContent = "Wrong Answer";
         }
 
         setTimeout(() => {
@@ -85,7 +85,7 @@ answerBtn.forEach((button) => {
   function handleAnswers() {  
      i += 1 ;
     
-    console.log(questionsArr[i].question);
+    // console.log(questionsArr[i].question);
     currentQuestion([i]);
     
   }
