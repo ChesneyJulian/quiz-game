@@ -47,18 +47,12 @@ submitBtn.addEventListener('click', function() {
 
  
 function currentQuestion([i]) {
-   
-    var questionEl = document.querySelector(".question");
-    var answerBtn1 = document.querySelector(".btn1");
-    var answerBtn2 = document.querySelector(".btn2");
-    var answerBtn3 = document.querySelector(".btn3");
-    var answerBtn4 = document.querySelector(".btn4");
     
-    questionEl.textContent = questionsArr[i].question;
-    answerBtn1.textContent = questionsArr[i].choices[0];
-    answerBtn2.textContent = questionsArr[i].choices[1];
-    answerBtn3.textContent = questionsArr[i].choices[2];
-    answerBtn4.textContent = questionsArr[i].choices[3];
+    document.querySelector(".question").textContent = questionsArr[i].question;
+    document.querySelector(".btn1").textContent = questionsArr[i].choices[0];
+    document.querySelector(".btn2").textContent = questionsArr[i].choices[1];
+    document.querySelector(".btn3").textContent = questionsArr[i].choices[2];
+    document.querySelector(".btn4").textContent = questionsArr[i].choices[3];
 }
 
     answerBtn.forEach((button) => {
@@ -71,7 +65,7 @@ function currentQuestion([i]) {
         
         });
     })
-    
+
   function handleAnswers() {  
      i += 1 ;
     
