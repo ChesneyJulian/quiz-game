@@ -66,18 +66,18 @@ answerBtn.forEach((button) => {
         
         if (userChoice == answersKey[i]) {
             console.log("correct");
-            answerResult.textContent = "Thats Correct!";
+            answerResult.textContent = "That's Correct!";
+            answerResult.style.color = "rgb(237, 189, 68)";
         } else {
             console.log("incorrect");
             answerResult.textContent = "Wrong Answer";
+            answerResult.style.color = "rgb(218, 106, 32)";
         }
 
         setTimeout(() => {
             answerResult.textContent = null;
             handleAnswers([i]);
-        }, 1500);
-        
-            
+        }, 1000);
         
         });
     })
@@ -85,7 +85,6 @@ answerBtn.forEach((button) => {
   function handleAnswers() {  
      i += 1 ;
     
-    // console.log(questionsArr[i].question);
     currentQuestion([i]);
     
   }
