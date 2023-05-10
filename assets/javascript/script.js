@@ -5,6 +5,7 @@ var startEl = document.querySelector('#start');
 var quizEl = document.querySelector('#quiz');
 var endEl = document.querySelector('#end');
 var i = 0;
+var answerResult = document.querySelector(".answer-result");
 var questionsArr = [ 
         {question: "Who was tricked into opening the Chamber of Secrets?",
         choices:["Hermione", "Ginny", "Neville", "Draco"] },
@@ -49,18 +50,33 @@ submitBtn.addEventListener('click', function() {
 function currentQuestion([i]) {
     
     document.querySelector(".question").textContent = questionsArr[i].question;
-    document.querySelector(".btn1").textContent = questionsArr[i].choices[0];
-    document.querySelector(".btn2").textContent = questionsArr[i].choices[1];
-    document.querySelector(".btn3").textContent = questionsArr[i].choices[2];
-    document.querySelector(".btn4").textContent = questionsArr[i].choices[3];
+    document.querySelector(".btn1").value = questionsArr[i].choices[0];
+    document.querySelector(".btn2").value = questionsArr[i].choices[1];
+    document.querySelector(".btn3").value = questionsArr[i].choices[2];
+    document.querySelector(".btn4").value = questionsArr[i].choices[3];
 }
+var answersKey = ["Ginny", "Using a Time-Turner","Godric's hollow", "Doe", "Fang", "Helena's Lost Diadem", "Bill", "Padfoot" ]
 
-    answerBtn.forEach((button) => {
-        button.addEventListener('click', function(event) {
-            event.stopPropagation();
-            event.preventDefault();
-           
-             handleAnswers([i]);
+answerBtn.forEach((button) => {
+     button.addEventListener('click', function(event) {
+        console.log(event.currentTarget.value);
+        event.stopPropagation();
+        event.preventDefault();
+        for (var x = 0; x < answersKey.length; x++) {
+            if (event.currentTarget.value == answersKey[x]) {
+               answerResult.textContent = "That's Correct!";
+               
+            } else {
+                answerResult.textContent = "Wrong Answer!"
+            }
+              
+        }
+
+        setTimeout(() => {
+            answerResult.textContent = null;
+            handleAnswers([i]);
+        }, 1500);
+        
             
         
         });
@@ -74,3 +90,5 @@ function currentQuestion([i]) {
     
   }
  
+
+
