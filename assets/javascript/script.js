@@ -4,6 +4,7 @@ var submitBtn = document.querySelector('#submit');
 var startEl = document.querySelector('#start');
 var quizEl = document.querySelector('#quiz');
 var endEl = document.querySelector('#end');
+var timeLeft = "";
 var i = 0;
 var answerResult = document.querySelector(".answer-result");
 var questionsArr = [ 
@@ -40,11 +41,7 @@ startBtn.addEventListener('click', function() {
     endEl.style.display = "none";
 });
 
-submitBtn.addEventListener('click', function() {
-    startEl.style.display =  null;
-    quizEl.style.display="none";
-    endEl.style.display="none";
-});
+
 
  
 function currentQuestion([i]) {
@@ -77,17 +74,39 @@ answerBtn.forEach((button) => {
         setTimeout(() => {
             answerResult.textContent = null;
             handleAnswers([i]);
-        }, 1000);
+        }, 300);
         
         });
     })
 
+    function endScreen() {
+        quizEl.style.display= "none";
+        endEl.style.display = null;
+        document.querySelector('.score').textContent = "Your score is " + timeLeft + "!"
+        
+    }
+
   function handleAnswers() {  
      i += 1 ;
-    
-    currentQuestion([i]);
-    
+     if (i < (questionsArr.length)) {
+        currentQuestion([i]);
+     } else {
+    endScreen();
+    }
   }
- 
 
+  
+function showHighScores() {
+    var userInfo = document.getElementById("initials");
+   
+    console.log(userInfo.value);
+}
+
+submitBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    
+    showHighScores();
+
+});
 
