@@ -25,7 +25,7 @@
         <section id="quiz" style="display: none;">
             <h2>Quiz</h2>
             <h3 class="question"></h3>
-            <input type="button" class="btn1 answer" value=""/>
+            <input type="button" class="btn1 answer" value="" />
             <input class="btn2 answer" type="button" value="" />
             <input class="btn3 answer" type="button" value="" />
             <input class="btn4 answer" type="button" value="" />
@@ -36,17 +36,27 @@
             <h2>That's the End!</h2>
             <p class="score"></p>
             <form class="user-info">
-                <input type="text" id="initials" placeholder="Enter Initials" value=""/>
+                <input type="text" id="initials" placeholder="Enter Initials" value="" />
                 <input type="submit" id="submit" value="Submit">
             </form>
         </section>
         <section id="scoresheet">
             <h2>High Scores</h2>
             <p id="test"></p>
-            
+            <table id="table-data">
+                <tr id="table-head">
+                    <th>User</th>
+                    <th>Score</th>
+                </tr>
+                <tr id="table-user"></tr>
+                
+                <tr id="table-score"></tr>
+
+            </table>
+
             <input type="button" id="play-again" value="Play Again">
         </section>
-    </main> 
+    </main>
 
 
     <script src="./assets/javascript/script.js"> </script>

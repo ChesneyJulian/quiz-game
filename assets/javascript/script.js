@@ -129,18 +129,20 @@ function showHighScores() {
     
    endEl.style.display = "none";
    scoreSheetEl.style.display = null;
-//  TO DO: FIGURE OUT HOW TO GET LOCAL STORAGE TO OUTPUT AS STRING
+   var storage = JSON.parse(localStorage.getItem("userScore"));
 
-//    document.querySelector("#scoresheet").appendChild(p);
-    var storage = JSON.parse(localStorage.getItem("userScore"));
-
-
-    document.getElementById("test").innerHTML = storage[0].user;
-
-
+   for (var s =0; s < storage.length; s++) { 
+        var tableInfo = document.createElement("td");
+        var rowEl = document.createElement("tr");
+        scoreSheetEl.querySelector("table").appendChild(rowEl);
+        rowEl.appendChild(tableInfo);
+        tableInfo.innerHTML = storage[s].user;
+    }
+}
     
 
-}
+
+
 var playAgainBtn = document.getElementById("play-again");
 
 playAgainBtn.addEventListener('click', function(event){
@@ -149,6 +151,7 @@ playAgainBtn.addEventListener('click', function(event){
     quizEl.style.display = "none";
     endEl.style.display= "none";
     scoreSheetEl.style.display="none";
+    document.getElementById("table-data").innerHTML = null;
     
 }) 
 
