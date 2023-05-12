@@ -55,10 +55,12 @@ function startTime(seconds) {
     timeClock.textContent = "Time Left: " + timeLeft +"s";
 }
 
+var timerInterval;
+
 function setTime(timeLeft) {
      startTime();
 
-     var timerInterval = setInterval(function(){
+      timerInterval = setInterval(function(){
         timeLeft--;
         timeClock.textContent= "Time Left: " + timeLeft +"s";
 
@@ -67,6 +69,10 @@ function setTime(timeLeft) {
         endScreen();
      }  else {score = timeLeft;} 
      }, 1000);
+}
+
+function stopClock () {
+    clearInterval(timerInterval);
 }
    
 
@@ -109,7 +115,7 @@ function handleAnswers() {
     if (i < (questionsArr.length)) {    
         currentQuestion([i]);    
     } else {    
-        
+        stopClock();
         endScreen();
    
         }
@@ -135,11 +141,9 @@ submitBtn.addEventListener('click', function(event) {
 
 
 function addToLocal() {
-   
-    
     var highScores = {
         user: userInfo.value,
-        score: timeLeft
+        score: score
     };
 
     console.log(highScores.user);
@@ -152,7 +156,7 @@ function addToLocal() {
 
 
 function showHighScores() {
-    
+   startEl.style.display = "none"; 
    endEl.style.display = "none";
    scoreSheetEl.style.display = null;
    var storage = JSON.parse(localStorage.getItem("userScore"));
