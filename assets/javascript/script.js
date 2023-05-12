@@ -6,11 +6,13 @@ var quizEl = document.querySelector('#quiz');
 var endEl = document.querySelector('#end');
 var scoreSheetEl = document.getElementById("scoresheet");
 var userInfo = document.getElementById("initials");
-var timeLeft = "";
+var timeLeft = 60;
+var score = 0;
+var timeClock = document.querySelector(".timer-element");
 var highScoreArr = [];
-
 var i = 0;
 var answerResult = document.querySelector(".answer-result");
+var answersKey = ["Ginny", "Using a Time-Turner","Godric's hollow", "Doe", "Fang", "Helena's Lost Diadem", "Bill", "Padfoot" ]
 var questionsArr = [ 
         {question: "Who was tricked into opening the Chamber of Secrets?",
         choices:["Hermione", "Ginny", "Neville", "Draco"] },
@@ -40,6 +42,7 @@ var questionsArr = [
 
 startBtn.addEventListener('click', function() { 
     currentQuestion([0]);
+    setTime(timeLeft);
     startEl.style.display = "none";
     quizEl.style.display = null;
     endEl.style.display = "none";
@@ -47,6 +50,25 @@ startBtn.addEventListener('click', function() {
 });
 
 
+
+function startTime(seconds) {
+    timeClock.textContent = "Time Left: " + timeLeft +"s";
+}
+
+function setTime(timeLeft) {
+     startTime();
+
+     var timerInterval = setInterval(function(){
+        timeLeft--;
+        timeClock.textContent= "Time Left: " + timeLeft +"s";
+
+     if (timeLeft === 0) {
+        clearInterval(timerInterval);
+        endScreen();
+     }  else {score = timeLeft;} 
+     }, 1000);
+}
+   
 
  
 function currentQuestion([i]) {
@@ -57,7 +79,7 @@ function currentQuestion([i]) {
     document.querySelector(".btn3").value = questionsArr[i].choices[2];
     document.querySelector(".btn4").value = questionsArr[i].choices[3];
 }
-var answersKey = ["Ginny", "Using a Time-Turner","Godric's hollow", "Doe", "Fang", "Helena's Lost Diadem", "Bill", "Padfoot" ]
+
 
 answerBtn.forEach((button) => {
      button.addEventListener('click', function(event) {
@@ -81,20 +103,24 @@ answerBtn.forEach((button) => {
         });
     })
 
+
 function handleAnswers() {  
     i += 1 ;    
     if (i < (questionsArr.length)) {    
         currentQuestion([i]);    
     } else {    
+        
         endScreen();
+   
         }
     }
     
+
 function endScreen() {
     startEl.style.display = "none";
     quizEl.style.display= "none";
     endEl.style.display = null;    
-     document.querySelector('.score').textContent = "Your score is " + timeLeft + "!"       
+     document.querySelector('.score').textContent = "Your score is " + score + "!"       
         
     }    
 
@@ -113,7 +139,7 @@ function addToLocal() {
     
     var highScores = {
         user: userInfo.value,
-        score: timeLeft.value
+        score: timeLeft
     };
 
     console.log(highScores.user);
@@ -132,16 +158,21 @@ function showHighScores() {
    var storage = JSON.parse(localStorage.getItem("userScore"));
 
    for (var s =0; s < storage.length; s++) { 
-        var tableInfo = document.createElement("td");
+        var tableInfoUser = document.createElement("td");
+        var tableInfoScore = document.createElement("td");
         var rowEl = document.createElement("tr");
+
         scoreSheetEl.querySelector("table").appendChild(rowEl);
-        rowEl.appendChild(tableInfo);
-        tableInfo.innerHTML = storage[s].user;
+        rowEl.appendChild(tableInfoUser);
+        rowEl.appendChild(tableInfoScore);
+
+        tableInfoUser.innerHTML = storage[s].user;
+        tableInfoScore.innerHTML = storage[s].score;
+        console.log(storage[s].score)
     }
+    
 }
     
-
-
 
 var playAgainBtn = document.getElementById("play-again");
 
