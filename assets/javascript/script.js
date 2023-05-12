@@ -106,7 +106,7 @@ submitBtn.addEventListener('click', function(event) {
     
 });
 
-var storage = JSON.parse(localStorage.getItem("userScore"));
+
 
 function addToLocal() {
    
@@ -116,22 +116,26 @@ function addToLocal() {
         score: timeLeft.value
     };
 
-    console.log(highScores);
+    console.log(highScores.user);
     highScoreArr.push(highScores);
     localStorage.setItem("userScore", JSON.stringify(highScoreArr));
-    console.log(highScoreArr, storage);
+    console.log(highScoreArr);
     showHighScores();
 }
     
 
 
-
-  
-
 function showHighScores() {
     
    endEl.style.display = "none";
    scoreSheetEl.style.display = null;
+//  TO DO: FIGURE OUT HOW TO GET LOCAL STORAGE TO OUTPUT AS STRING
+
+//    document.querySelector("#scoresheet").appendChild(p);
+    var storage = JSON.parse(localStorage.getItem("userScore"));
+
+
+    document.getElementById("test").innerHTML = storage[0].user;
 
 
     
