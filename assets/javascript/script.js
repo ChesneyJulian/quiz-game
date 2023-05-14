@@ -40,13 +40,14 @@ var questionsArr = [
     ]
 
 
+
 startBtn.addEventListener('click', function () { 
-    currentQuestion([0]);
+    currentQuestion([0]); 
     setTime(timeLeft);
+    startTime();
     startEl.style.display = "none";
     quizEl.style.display = null;
-    endEl.style.display = "none";
-    scoreSheetEl.style.display="none";
+
 });
 
 
@@ -58,15 +59,16 @@ function startTime(seconds) {
 var timerInterval;
 
 function setTime(timeLeft) {
-     startTime();
 
       timerInterval = setInterval(function(){
         timeLeft--;
         timeClock.textContent= "Time Left: " + timeLeft +"s";
 
-     if (timeLeft === 0) {
-        clearInterval(timerInterval);
+     if (timeLeft <= 0) {
+        score = 0;
+        stopClock();
         endScreen();
+        
      }  else {score = timeLeft;} 
      }, 1000);
 }
@@ -98,13 +100,15 @@ answerBtn.forEach((button) => {
             answerResult.textContent = "That's Correct!";
             answerResult.style.color = "rgb(237, 189, 68)";
         } else {
+            stopClock();
+            setTime(score-15);
             answerResult.textContent = "Wrong Answer";
             answerResult.style.color = "rgb(218, 106, 32)";
             
-
         }
 
         setTimeout(() => {
+            
             answerResult.textContent = null;
             handleAnswers([i]);
         }, 300);
@@ -122,8 +126,8 @@ function handleAnswers() {
     } else {    
         stopClock();
         endScreen();
-   
         }
+        
     }
     
 
@@ -174,7 +178,7 @@ function showHighScores() {
         var tableInfoScore = document.createElement("td");
         var rowEl = document.createElement("tr");
 
-        scoreSheetEl.querySelector("table").appendChild(rowEl);
+        scoreSheetEl.children[1].appendChild(rowEl);
         rowEl.appendChild(tableInfoUser);
         rowEl.appendChild(tableInfoScore);
 
@@ -191,12 +195,16 @@ var playAgainBtn = document.getElementById("play-again");
 playAgainBtn.addEventListener('click', function(event){
     event.preventDefault();
     startEl.style.display= "none";
-    quizEl.style.display = null;
+    quizEl.style.display =null;
     endEl.style.display= "none";
     scoreSheetEl.style.display="none";
     document.getElementById("table-data").innerHTML = null;
-    setTime(timeLeft = 60);
-    currentQuestion([i=0]);
+    timeLeft = 60;
+    setTime(timeLeft);
+    startTime(60);
+    currentQuestion([i=0]);  
+    
+    
 }) 
 
 
