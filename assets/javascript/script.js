@@ -17,30 +17,30 @@ var questionsArr = [
         {question: "Who was tricked into opening the Chamber of Secrets?",
         choices:["Hermione", "Ginny", "Neville", "Draco"] },
 
-        // {question: "How was Hermione able to take multiple classes at once?", 
-        // choices: ["She ran", "Using a looking glass", "Using a Time-Turner", "Using dark magic"]},
+        {question: "How was Hermione able to take multiple classes at once?", 
+        choices: ["She ran", "Using a looking glass", "Using a Time-Turner", "Using dark magic"]},
 
-        // {question: "Where was Harry Potter born?", 
-        // choices:["Godric's hollow", "Privet Drive", "The Leaky Cauldron", "Hogwarts"]}, 
+        {question: "Where was Harry Potter born?", 
+        choices:["Godric's hollow", "Privet Drive", "The Leaky Cauldron", "Hogwarts"]}, 
 
-        // {question: "What is Seversus's patronus charm?", 
-        // choices:["Beaver", "Doe", "Bear", "Stag"]},
+        {question: "What is Seversus's patronus charm?", 
+        choices:["Beaver", "Doe", "Bear", "Stag"]},
 
-        // {question: "What is the name of Hagrids pet hound?", 
-        // choices:["Bruce", "Grawp", "Arragog", "Fang"]}, 
+        {question: "What is the name of Hagrids pet hound?", 
+        choices:["Bruce", "Grawp", "Arragog", "Fang"]}, 
 
-        // {question: "What horcrux does Harry find within the Room of Requirement?", 
-        // choices:["Helena's Lost Diadem", "Tom Riddle's Diary", "The sword of Gryffindor", "The Mirror of Erised"]},
+        {question: "What horcrux does Harry find within the Room of Requirement?", 
+        choices:["Helena's Lost Diadem", "Tom Riddle's Diary", "The sword of Gryffindor", "The Mirror of Erised"]},
 
-        // {question: "What is Ron's eldest brother's name?",
-        // choices: ["Percy", "Charlie", "George", "Bill"]},
+        {question: "What is Ron's eldest brother's name?",
+        choices: ["Percy", "Charlie", "George", "Bill"]},
 
-        // {question: "What is Sirius's nickname within his friend group, the Marauders?",
-        // choices: ["Prongs", "Wormtail", "Padfoot", "Mooney"]}
+        {question: "What is Sirius's nickname within his friend group, the Marauders?",
+        choices: ["Prongs", "Wormtail", "Padfoot", "Mooney"]}
     ]
 
 
-startBtn.addEventListener('click', function() { 
+startBtn.addEventListener('click', function () { 
     currentQuestion([0]);
     setTime(timeLeft);
     startEl.style.display = "none";
@@ -84,8 +84,9 @@ function currentQuestion([i]) {
     document.querySelector(".btn2").value = questionsArr[i].choices[1];
     document.querySelector(".btn3").value = questionsArr[i].choices[2];
     document.querySelector(".btn4").value = questionsArr[i].choices[3];
-}
 
+    
+}
 
 answerBtn.forEach((button) => {
      button.addEventListener('click', function(event) {
@@ -99,6 +100,8 @@ answerBtn.forEach((button) => {
         } else {
             answerResult.textContent = "Wrong Answer";
             answerResult.style.color = "rgb(218, 106, 32)";
+            
+
         }
 
         setTimeout(() => {
@@ -108,6 +111,8 @@ answerBtn.forEach((button) => {
         
         });
     })
+
+
 
 
 function handleAnswers() {  
@@ -148,7 +153,10 @@ function addToLocal() {
 
     console.log(highScores.user);
     highScoreArr.push(highScores);
+    highScoreArr.sort();
+    highScoreArr.reverse();
     localStorage.setItem("userScore", JSON.stringify(highScoreArr));
+
     console.log(highScoreArr);
     showHighScores();
 }
@@ -182,12 +190,13 @@ var playAgainBtn = document.getElementById("play-again");
 
 playAgainBtn.addEventListener('click', function(event){
     event.preventDefault();
-    startEl.style.display= null;
-    quizEl.style.display = "none";
+    startEl.style.display= "none";
+    quizEl.style.display = null;
     endEl.style.display= "none";
     scoreSheetEl.style.display="none";
     document.getElementById("table-data").innerHTML = null;
-    
+    setTime(timeLeft = 60);
+    currentQuestion([i=0]);
 }) 
 
 
