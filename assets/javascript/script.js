@@ -160,16 +160,14 @@ function addToLocal() {
 
     console.log(highScores.user);
     highScoreArr.push(highScores);
-    highScoreArr.sort(
-        // TO DO: ADD COMPARISON FUNCTION TO COMPARE SCORES
-    );
-    highScoreArr.reverse();
     localStorage.setItem("userScore", JSON.stringify(highScoreArr));
 
     console.log(highScoreArr);
     showHighScores();
 }
-    
+
+
+
 
 
 function showHighScores() {
