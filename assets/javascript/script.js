@@ -43,7 +43,6 @@ var questionsArr = [
 
 startBtn.addEventListener('click', function () { 
     currentQuestion([0]); 
-    setTime(timeLeft);
     startTime();
     startEl.style.display = "none";
     quizEl.style.display = null;
@@ -52,13 +51,16 @@ startBtn.addEventListener('click', function () {
 
 
 
-function startTime(seconds) {
+function startTime() {
+    timeLeft = 60;
     timeClock.textContent = "Time Left: " + timeLeft +"s";
+    setTime();
+    
 }
 
 var timerInterval;
 
-function setTime(timeLeft) {
+function setTime() {
 
       timerInterval = setInterval(function(){
         timeLeft--;
@@ -73,12 +75,12 @@ function setTime(timeLeft) {
      }, 1000);
 }
 
+
 function stopClock () {
     clearInterval(timerInterval);
 }
-   
-
  
+
 function currentQuestion([i]) {
     
     document.querySelector(".question").textContent = questionsArr[i].question;
@@ -95,6 +97,7 @@ answerBtn.forEach((button) => {
         var userChoice = event.currentTarget.value; 
         event.stopPropagation();
         event.preventDefault();
+        console.log(timeLeft);
         
         if (userChoice == answersKey[i]) {
             answerResult.textContent = "That's Correct!";
@@ -102,9 +105,9 @@ answerBtn.forEach((button) => {
             
         } else {
             stopClock();
-            score -= 15;
-            setTime(score);
-            answerResult.textContent = "Wrong Answer";
+            timeLeft -= 15;
+            setTime(timeLeft);
+            answerResult.textContent = "Wrong Answer. -15s";
             answerResult.style.color = "rgb(218, 106, 32)";
             
         }
@@ -112,13 +115,11 @@ answerBtn.forEach((button) => {
                 
                 answerResult.textContent = null;
                 handleAnswers([i]);
-            }, 300);
+            }, 1000);
         
         
         });
     })
-
-
 
 
 function handleAnswers() {  
@@ -153,13 +154,15 @@ submitBtn.addEventListener('click', function(event) {
 
 function addToLocal() {
     var highScores = {
-        user: userInfo.value,
-        score: score
+        score: score,
+        user: userInfo.value
     };
 
     console.log(highScores.user);
     highScoreArr.push(highScores);
-    highScoreArr.sort();
+    highScoreArr.sort(
+        // TO DO: ADD COMPARISON FUNCTION TO COMPARE SCORES
+    );
     highScoreArr.reverse();
     localStorage.setItem("userScore", JSON.stringify(highScoreArr));
 
@@ -202,11 +205,8 @@ playAgainBtn.addEventListener('click', function(event){
     scoreSheetEl.style.display="none";
     document.getElementById("table-data").innerHTML = null;
     timeLeft = 60;
-    setTime(timeLeft);
-    startTime(60);
+    startTime(timeLeft);
     currentQuestion([i=0]);  
-    
-    
 }) 
 
 
