@@ -91,7 +91,7 @@ function currentQuestion([i]) {
 }
 
 answerBtn.forEach((button) => {
-     button.addEventListener('click', function(event) {
+    button.addEventListener('click', function(event) {
         var userChoice = event.currentTarget.value; 
         event.stopPropagation();
         event.preventDefault();
@@ -99,19 +99,21 @@ answerBtn.forEach((button) => {
         if (userChoice == answersKey[i]) {
             answerResult.textContent = "That's Correct!";
             answerResult.style.color = "rgb(237, 189, 68)";
+            
         } else {
             stopClock();
-            setTime(score-15);
+            score -= 15;
+            setTime(score);
             answerResult.textContent = "Wrong Answer";
             answerResult.style.color = "rgb(218, 106, 32)";
             
         }
-
-        setTimeout(() => {
-            
-            answerResult.textContent = null;
-            handleAnswers([i]);
-        }, 300);
+    setTimeout(() => {
+                
+                answerResult.textContent = null;
+                handleAnswers([i]);
+            }, 300);
+        
         
         });
     })
@@ -135,7 +137,7 @@ function endScreen() {
     startEl.style.display = "none";
     quizEl.style.display= "none";
     endEl.style.display = null;    
-     document.querySelector('.score').textContent = "Your score is " + score + "!"       
+    document.querySelector('.score').textContent = "Your score is " + score + "!"       
         
     }    
 
