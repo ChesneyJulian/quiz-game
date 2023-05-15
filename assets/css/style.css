@@ -34,3 +34,13 @@ p {
     justify-content: space-evenly;
     
 }
+
+.answer:hover {
+    color:rgb(237, 189, 68);
+}
+
+ .answer {
+    transition: none;
+    outline: none;
+    --focus: none;
+}
