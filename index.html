@@ -13,6 +13,7 @@
 
 <body>
     <main>
+        <!-- create start section -->
         <section id="start">
             <h2>Harry Potter Trivia Quiz</h2>
             <p> To answer a question, simply click one of the options displayed below the question. Once answered, the
@@ -20,8 +21,8 @@
                 At the end of the quiz, enter your initials and click the submit button to keep track of your scores!
             </p>
             <button id="start-btn" type="button">Start Quiz</button>
-
         </section>
+        <!-- create quiz section with 4 input button elements with no assigned test/value to later assign answer options to-->
         <section id="quiz" style="display: none;">
             <h2>Quiz</h2>
             <p class="timer-element"></p>
@@ -30,25 +31,25 @@
             <input class="btn2 answer" type="button" value="" />
             <input class="btn3 answer" type="button" value="" />
             <input class="btn4 answer" type="button" value="" />
+            <!-- create empty p element to assign answer result message to -->
             <p class="answer-result"></p>
 
         </section>
+        <!-- create end section with form to allow user input for initials -->
         <section id="end" style="display: none;">
             <h2>That's the End!</h2>
             <p class="score"></p>
             <form class="user-info">
                 <input type="text" id="initials" placeholder="Enter Initials" value="" />
+                <!-- add submit button to submit info to local storage -->
                 <input type="submit" id="submit" value="Submit">
             </form>
         </section>
+        <!-- create scoreesheet section to display table of high scores -->
         <section id="scoresheet" style="display: none;">
             <h2>High Scores</h2>
-            <table id="table-data">
-                
-                
-
-            </table>
-
+            <table id="table-data"></table>
+            <!-- add play again input button to restart quiz -->
             <input type="button" id="play-again" value="Play Again">
         </section>
     </main>

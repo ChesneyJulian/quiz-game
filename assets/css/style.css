@@ -1,12 +1,13 @@
+/* adjust height so each section takes up the whole viewport; display flex and adjust flex styling */
 section {
     height: 100vh;
-    /* width: 100vw; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
+/* adjust styling to h2 elements; change color and make larger with adjusted padding/margin */
 h2 {
     padding: 20px;
     margin: 5px;
@@ -14,33 +15,40 @@ h2 {
     color: rgb(237, 189, 68);
 }
 
+/* adjust padding for p elements */
 p {
     padding: 10px;
 }
 
+/* adjust margin and background color for start-btn */
 #start-btn {
     margin: 20px;
     background-color: rgba(218, 165, 32, 0.575);
 }
 
+/* set display flex direction column and align items center for table-data to align all contents in the center */
 #table-data {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* adjust timer element display flex space-evenly */
 .timer-element {
     display: flex;
     justify-content: space-evenly;
     
 }
 
+/* adjust color of text when answer buttons are hovered over */
 .answer:hover {
     color:rgb(237, 189, 68);
 }
 
+/* unset the water css styling for transitions, outlines, and --focus stylings  */
  .answer {
     transition: none;
     outline: none;
     --focus: none;
 }
+
